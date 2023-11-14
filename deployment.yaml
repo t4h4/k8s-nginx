@@ -23,9 +23,16 @@ spec:
           export API_SECRET="{{ .Data.data.api_secret }}"
           {{- end -}}
     spec:
-      serviceAccountName: vault-auth
+      serviceAccountName: taha
       containers:
       - name: nginx
         image: nginx:latest
         ports:
         - containerPort: 80
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: taha
+  labels:
+    app: nginx-vault
