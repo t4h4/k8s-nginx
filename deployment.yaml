@@ -17,13 +17,11 @@ spec:
         vault.hashicorp.com/agent-inject: "true"
         vault.hashicorp.com/role: "taha"
         vault.hashicorp.com/agent-inject-secret-mysecret: "secret/data/taha/config"
-        vault.hashicorp.com/agent-inject-template-mysecrets: |
+        vault.hashicorp.com/agent-inject-template-mysecret: |
           {{- with secret "secret/data/taha/config" -}}
-          {{- range $key, $value := .Data.data }}
-          export {{ $key | toUpper }}="{{ $value }}"
-          {{- end }}
-          {{- end }}
-
+          export API_KEY="{{ .Data.data.api_key }}"
+          export API_SECRET="{{ .Data.data.api_secret }}"
+          {{- end -}}
     spec:
       serviceAccountName: taha
       containers:
@@ -31,10 +29,8 @@ spec:
         image: nginx:latest
         ports:
         - containerPort: 80
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: taha
-  labels:
-    app: nginx-vault
+        command: ["/bin/sh", "-c"]
+        args:
+        - |
+          #!/bin/sh
+          . /vault/secrets/mysecret
