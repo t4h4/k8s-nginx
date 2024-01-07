@@ -18,5 +18,5 @@ spec:
         ports:
         - containerPort: 80
       - envFrom:
-          - secretRef:
-              name: all-vault-secrets
+      - secretRef:
+          name: all-vault-secrets
