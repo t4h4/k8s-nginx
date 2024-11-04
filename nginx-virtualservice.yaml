@@ -5,7 +5,7 @@ metadata:
   namespace: nginx
 spec:
   hosts:
-  - nginx-taha-cluster-tenant1.ankara.com
+  - nginx-taha-cluster-tenant2.istanbul.com
   gateways:
   - nginx-gateway
   http:
