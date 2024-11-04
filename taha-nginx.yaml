@@ -9,7 +9,7 @@ data:
     <head><title>NGINX - Cluster Tenant 2</title></head>
     <body>
       <h1>Etiya DevOps</h1>
-      <p>This is cluster: cluster-tenant-2</p>
+      <h3>This is cluster: cluster-tenant-2</h3>
     </body>
     </html>
 ---
